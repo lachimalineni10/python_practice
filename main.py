@@ -6,7 +6,7 @@ from database_model import Base, Product
 import database_model
 
 database_model.Base.metadata.create_all(bind = engine)
-
+ 
 app = FastAPI()
 
 # @app.get("/")
