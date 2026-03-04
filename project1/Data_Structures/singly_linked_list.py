@@ -54,7 +54,6 @@ class LinkedList:
             new_node.ref    = self.head
             self.head       = new_node
             return
-        
         elif self.head is None:
             return
         
@@ -70,10 +69,28 @@ class LinkedList:
             new_node.ref    = n.ref
             n.ref           = new_node
 
+    def delete_node_at_begining(self):
+        if self.head is None:
+            return "Linked List is empty"
+        self.head = self.head.ref
+
+    def delete_node_at_end(self):
+        if self.head is None:
+            return "Linked List is empty"
+        if self.head.ref is None:
+            self.head = None
+            return
+        n = self.head
+        while n.ref.ref is not None:
+            n = n.ref
+        n.ref = None
+
 LL1 = LinkedList()
-LL1.add_node_at_begining(20)
+# LL1.add_node_at_begining(20)
 LL1.add_node_at_begining(10)
 LL1.add_node_at_end(100)
+LL1.delete_node_at_end()
+# LL1.delete_node_at_begining()
 # LL1.add_node_after_a_node(30, 20)
-LL1.add_node_before_a_node(50, 1000)
-print(LL1.print_LL())
+# LL1.add_node_before_a_node(50, 1000)
+LL1.print_LL()

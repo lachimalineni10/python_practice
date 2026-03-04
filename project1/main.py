@@ -2,10 +2,20 @@ from fastapi import FastAPI
 import uvicorn
 # from models import Product
 from config import engine, session
-from database_model import Base, Product
-import database_model
+from models.product import Base, Product
+from sqlalchemy import text
 
-database_model.Base.metadata.create_all(bind = engine)
+# Test database connection
+try:
+    with engine.connect() as conn:
+        result = conn.execute(text("SELECT 1"))
+        print("Database connection test: SUCCESS")
+except Exception as e:
+    print(f"Database connection test: FAILED - {e}")
+
+Base.metadata.create_all(bind=engine)
+print(f"Tables in metadata: {Base.metadata.tables.keys()}")
+
  
 app = FastAPI()
 
